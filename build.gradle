@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.lld'
+version = '1.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // JUnit 5 for unit testing
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
+}
+
+test {
+    useJUnitPlatform()
+}
