@@ -18,6 +18,7 @@ public class Topic {
 //    4. The same thread is reused for future tasks (thread pooling = efficient).
     private final ExecutorService executor;
 
+
     public Topic() {
         subscriberWorkers = new ArrayList<>();
         executor = Executors.newFixedThreadPool(threadPoolSize);

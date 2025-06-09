@@ -16,8 +16,11 @@ repositories {
 
 dependencies {
     // JUnit 5 for unit testing
+    compileOnly 'org.projectlombok:lombok:1.18.30' // latest version
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
     implementation 'org.slf4j:slf4j-api:2.0.9'
-    implementation 'ch.qos.logback:logback-classic:1.4.11' 
+    implementation 'ch.qos.logback:logback-classic:1.4.11'
+    implementation 'com.google.code.gson:gson:2.10.1'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
 }
 

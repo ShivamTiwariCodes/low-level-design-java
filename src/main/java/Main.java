@@ -1,11 +1,20 @@
 
 import problems.onlineshopping.OnlineShoppingDemo;
+import problems.pubsubsystem.PubSubSystemDemo;
+import problems.snakeAndLadder.SnakeAndLadderDemo;
 
 public class Main {
 
     public static void main(String[] args) {
         OnlineShoppingDemo onlineshopping = new OnlineShoppingDemo();
-        onlineshopping.run();
+//        onlineshopping.run();
+
+
+        PubSubSystemDemo pubSubSystemDemo = new PubSubSystemDemo();
+//        pubSubSystemDemo.run();
+
+        SnakeAndLadderDemo snakeAndLadderDemo = new SnakeAndLadderDemo();
+        snakeAndLadderDemo.runDemo();
     }
 
 }
