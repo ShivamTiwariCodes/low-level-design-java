@@ -38,23 +38,19 @@ public class Account {
         }
     }
 
-    public void addBalance(BigDecimal amount) {
+    public void withdraw(BigDecimal amount) {
         synchronized (lock) {
-            this.balance = this.balance.add(amount);
+            if(balance.compareTo(amount) >= 0) {
+                this.balance = this.balance.subtract(amount);
+            } else {
+                throw new InsufficientAmountException();
+            }
         }
     }
 
     public void deposit(BigDecimal amount) {
         synchronized (lock) {
-            this.balance.add(amount);
-        }
-    }
-
-    public void withdraw(BigDecimal amountToWithdraw) {
-        synchronized (lock) {
-            if(balance.compareTo(amountToWithdraw) >= 0) {
-                balance.subtract(amountToWithdraw);
-            }
+            this.balance = this.balance.add(amount);
         }
     }
 

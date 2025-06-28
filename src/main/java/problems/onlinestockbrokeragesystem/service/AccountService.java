@@ -6,7 +6,6 @@ import problems.onlinestockbrokeragesystem.models.Account;
 import problems.onlinestockbrokeragesystem.models.Stock;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
@@ -37,42 +36,51 @@ public class AccountService {
         accounts.putIfAbsent(userId, new Account(userId, new BigDecimal("0")));
     }
 
-    public void deposit(String userId, BigDecimal amount) {
-        if(accounts.containsKey(userId)) {
-            accounts.get(userId).addBalance(amount);
+//    Thread safe
+    private Account getAccountOrThrow(String userId) {
+        Account account = accounts.get(userId);
+        if (account == null) {
+            throw new IllegalArgumentException("Account not found: " + userId);
         }
+        return account;
+    }
+
+    public void deposit(String userId, BigDecimal amount) {
+//         Not atomic between containsKey() and get()
+//         May cause NullPointerException if removed concurrently
+//        if(accounts.containsKey(userId)) {
+//            accounts.get(userId).addBalance(amount);
+//        }
+        getAccountOrThrow(userId).deposit(amount);
     }
 
     public void withdraw(String userId, BigDecimal amount) throws InsufficientAmountException {
-        if(accounts.containsKey(userId) && accounts.get(userId).getBalance().compareTo(amount) >= 0) {
-            accounts.get(userId).getBalance().subtract(amount);
-        } else {
-            throw new InsufficientAmountException();
-        }
+//        You’ve already obtained a reference to the Account object.
+//        Even if it is removed from accounts map by another thread in between, your reference is still valid.
+//        In Java, objects live in memory as long as some thread has a reference — even if they are removed from a map.
+        Account account = getAccountOrThrow(userId);
+        account.withdraw(amount);
     }
 
     public Map<Stock, Integer> getPorfolio(String userId) {
-        if(accounts.containsKey(userId)) {
-            Map<String, Integer> holdings = accounts.get(userId).getStocks();
+        Account account = getAccountOrThrow(userId);
+            Map<String, Integer> holdings = account.getStocks();
             return holdings.entrySet().stream()
                     .collect(Collectors.toMap(
                             e -> onlineStockBrokerageSystem.getStock(e.getKey()),
                             Map.Entry::getValue
                     ));
-        }
-        return null;
+
     }
 
     public void addStock(String userId, String stockId, int count) {
-        if(accounts.containsKey(userId)) {
-            accounts.get(userId).addStocks(stockId, count);
-        }
+        Account account = getAccountOrThrow(userId);
+        account.addStocks(stockId, count);
     }
 
     public void removeStock(String userId, String stockId, int count) {
-        if(accounts.containsKey(userId)) {
-            accounts.get(userId).removeStocks(stockId, count);
-        }
+        Account account = getAccountOrThrow(userId);
+        account.removeStocks(stockId, count);
     }
 
 

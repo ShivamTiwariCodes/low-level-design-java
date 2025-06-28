@@ -1,5 +1,6 @@
 
 import problems.onlineshopping.OnlineShoppingDemo;
+import problems.onlinestockbrokeragesystem.OnlineStockBrokerageSystemDemo;
 import problems.pubsubsystem.PubSubSystemDemo;
 import problems.snakeAndLadder.SnakeAndLadderDemo;
 
@@ -14,7 +15,10 @@ public class Main {
 //        pubSubSystemDemo.run();
 
         SnakeAndLadderDemo snakeAndLadderDemo = new SnakeAndLadderDemo();
-        snakeAndLadderDemo.runDemo();
+//        snakeAndLadderDemo.runDemo();
+
+        OnlineStockBrokerageSystemDemo onlineStockBrokerageSystemDemo = new OnlineStockBrokerageSystemDemo();
+        onlineStockBrokerageSystemDemo.run();
     }
 
 }

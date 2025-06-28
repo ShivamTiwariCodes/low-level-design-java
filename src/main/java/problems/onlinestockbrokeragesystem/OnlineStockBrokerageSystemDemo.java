@@ -64,10 +64,19 @@ public class OnlineStockBrokerageSystemDemo {
         Stock stock3 = onlineStockBrokerageSystem.getStock(stocks[2]);
         Stock stock4 = onlineStockBrokerageSystem.getStock(stocks[3]);
 
-        orderService.buy(user1, stock4, 60);
+        orderService.buy(user1, stock4, 40);
 
         Map<Stock, Integer> holdings = accountService.getPorfolio(user1.getUserId());
-        System.out.println(holdings.size());
+        for(Map.Entry<Stock, Integer> e: holdings.entrySet()) {
+            System.out.println(e.getKey().getName() + " " + e.getValue());
+        }
+
+        orderService.sell(user1, stock4, 20);
+
+        holdings = accountService.getPorfolio(user1.getUserId());
+        for(Map.Entry<Stock, Integer> e: holdings.entrySet()) {
+            System.out.println(e.getKey().getName() + " " + e.getValue());
+        }
 
 
     }

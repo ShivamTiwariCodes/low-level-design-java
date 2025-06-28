@@ -44,12 +44,14 @@ public class OrderService {
     public void buy(User user, Stock stock, int count) {
         Order order = new BuyOrder(user.getUserId(), stock.getStockId(), count);
         orders.put(order.getOrderId(), order);
+//        order.execute(onlineStockBrokerageSystem, accountService);
         placeOrder(order);
     }
 
     public void sell(User user, Stock stock, int count) {
         Order order = new SellOrder(user.getUserId(), stock.getStockId(), count);
         orders.put(order.getOrderId(), order);
+//        order.execute(onlineStockBrokerageSystem, accountService);
         placeOrder(order);
     }
 
