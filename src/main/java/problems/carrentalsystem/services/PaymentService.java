@@ -33,7 +33,6 @@ public class PaymentService {
     public Payment pay(IPaymentStrategy paymentStrategy, BigDecimal cost) {
         Payment payment = new Payment(UUID.randomUUID().toString(), paymentStrategy, cost);
         map.putIfAbsent(payment.getPaymentId(), payment);
-        payment.pay();
         return payment;
     }
 

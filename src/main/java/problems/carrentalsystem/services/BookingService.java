@@ -41,6 +41,9 @@ public class BookingService {
         BigDecimal totalCost = car.getPricePerDay().multiply(new BigDecimal(days));
         Payment payment = paymentService.pay(paymentStrategy, totalCost);
         Booking booking = new Booking(user.getId(), car.getId(), dateRange, payment);
+
+        payment.pay();
+        booking.setBookingStatus(BookingStatus.CONFIRMED);
         addUserBooking(user.getId(), booking);
         addCarBooking(car.getId(), booking);
     }
@@ -58,5 +61,9 @@ public class BookingService {
 
     public List<Booking> getCarBooking(String carId) {
         return carBookingsMap.getOrDefault(carId, new CopyOnWriteArrayList<>());
+    }
+
+    public List<Booking> getBookingsByUserId(String userId) {
+        return userBookingsMap.getOrDefault(userId, new CopyOnWriteArrayList<>());
     }
 }

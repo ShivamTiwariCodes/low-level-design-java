@@ -45,15 +45,16 @@ public class CarService {
         List<Car> availableCars = new ArrayList<>();
         BookingService bookingService = BookingService.getBookingServiceInstance();
         for(Car car: cars.values()) {
-            List<Booking> bookings = bookingService.getCarBooking(car.getId());
-            if(isBookingConflicting(bookings, filter.getDateRange())) {
+            if((filter.getCarType() != null && filter.getCarType() != car.getCarType()) ||
+                    (!filter.isPriceInRange(car.getPricePerDay())))
+                continue;
 
+            List<Booking> bookings = bookingService.getCarBooking(car.getId());
+            if(!isBookingConflicting(bookings, filter.getDateRange())) {
+                availableCars.add(car);
             }
         }
-
-
-        System.out.println("Applied filters : " + filter.toString());
-        return new ArrayList<>();
+        return availableCars;
     }
 
     public boolean isBookingConflicting(List<Booking> bookings, DateRange dateRange) {

@@ -72,19 +72,38 @@ public static void run() {
         LocalDateTime endTime = LocalDateTime.now().plusDays(2).plusHours(1);
 
         Filter filter1 = new Filter(new DateRange(startTime, endTime));
+        filter1.setCarType(CarType.SUV);
 
         List<Car> availableCars = carService.getAvailableCars(filter1);
 
+        UPIPaymentStrategy upiPaymentStrategy = new UPIPaymentStrategy("user_1@upi");
 
+        System.out.println("Booking car with carId : " + availableCars.get(0).getLicensePlateNumber() + " for filters " + filter1.toString());
 
-        System.out.println("Booking car with carId : " + availableCars.get(0).getId() + " for filters " + filter1.toString());
+        bookingService.book(user1, availableCars.get(0), upiPaymentStrategy, filter1.getDateRange());
 
-        Filter filter2 = new Filter(new DateRange(LocalDateTime.now().plusDays(1).plusHours(2), LocalDateTime.now().plusDays(2).plusHours(1)));
-        availableCars = carService.getAvailableCars(filter2);
+        System.out.println(bookingService.getBookingsByUserId(user1.getId()).get(0).getBookingId());
 
+//      Expected size is zero
+        List<Car> availableCars2 = carService.getAvailableCars(filter1);
+        System.out.println("Expected 0, actual : " + availableCars2.size());
 
+        filter1.setCarType(CarType.SEDAN);
+        availableCars2 = carService.getAvailableCars(filter1);
+        System.out.println("Expected license 1 , actual : " + availableCars2.get(0).getLicensePlateNumber());
 
+        filter1.setCarType(CarType.COUPE);
+        availableCars2 = carService.getAvailableCars(filter1);
+        System.out.println("Expected license 3 , actual : " + availableCars2.get(0).getLicensePlateNumber());
 
+        filter1.setCarType(CarType.SUV);
+        filter1.setDateRange(new DateRange(endTime.plusDays(1), endTime.plusDays(2)));
+        availableCars2 = carService.getAvailableCars(filter1);
+        System.out.println("Expected license 2 , actual : " + availableCars2.get(0).getLicensePlateNumber());
+
+        filter1.setDateRange(new DateRange(startTime, startTime.plusDays(1)));
+        availableCars2 = carService.getAvailableCars(filter1);
+        System.out.println("Expected 0 , actual : " + availableCars2.size());
 
 
     }
