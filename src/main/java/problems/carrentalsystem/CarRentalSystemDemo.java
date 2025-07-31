@@ -40,7 +40,7 @@ public class CarRentalSystemDemo {
 
 public static void run() {
 
-        UserService userService = UserService.getCarServiceInstance();
+        UserService userService = UserService.getUserServiceInstance();
         CarService carService = CarService.getCarServiceInstance();
         BookingService bookingService = BookingService.getBookingServiceInstance();
 

@@ -15,7 +15,7 @@ public class UserService {
         this.users = new ConcurrentHashMap<>();
     }
 
-    public static UserService getCarServiceInstance() {
+    public static UserService getUserServiceInstance() {
         if(userServiceInstance == null) {
             synchronized (UserService.class) {
                 if(userServiceInstance == null) {
@@ -39,6 +39,7 @@ public class UserService {
         switch (key) {
             case "name":
                 user.setName((String) value);
+                break;
             default:
                 System.out.println("Provide the valid key");
         }
