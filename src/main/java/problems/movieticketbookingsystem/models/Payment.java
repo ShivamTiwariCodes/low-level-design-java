@@ -3,16 +3,19 @@ package problems.movieticketbookingsystem.models;
 import common.utils.TextUtil;
 
 import lombok.Getter;
+import problems.carrentalsystem.models.Booking;
+
+import java.math.BigDecimal;
 
 public class Payment {
 
     private String id;
     private User user;
-    private int amount;
+    private BigDecimal amount;
     private PaymentStatus paymentStatus;
     private IPaymentStrategy paymentStrategy;
 
-    public Payment(User user, int amount, IPaymentStrategy paymentStrategy) {
+    public Payment(User user, BigDecimal amount, IPaymentStrategy paymentStrategy) {
         this.id = TextUtil.generateRandomText(8);
         this.user = user;
         this.amount = amount;

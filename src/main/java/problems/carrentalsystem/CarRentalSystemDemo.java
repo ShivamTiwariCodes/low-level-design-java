@@ -1,8 +1,13 @@
 package problems.carrentalsystem;
 
-import problems.carrentalsystem.models.User;
+import problems.carrentalsystem.models.*;
+import problems.carrentalsystem.services.BookingService;
+import problems.carrentalsystem.services.CarService;
 import problems.carrentalsystem.services.UserService;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 public class CarRentalSystemDemo {
@@ -33,9 +38,11 @@ public class CarRentalSystemDemo {
 //    fetch list of available car and verify booked not found
 //    try to book the same car
 
-    public void run() {
+public static void run() {
 
         UserService userService = UserService.getCarServiceInstance();
+        CarService carService = CarService.getCarServiceInstance();
+        BookingService bookingService = BookingService.getBookingServiceInstance();
 
         User user1 = new User("user_1", "user1", "9887988798", "UP8382732");
         User user2 = new User("user_2", "user2", "9887989867", "UP3278328");
@@ -46,6 +53,36 @@ public class CarRentalSystemDemo {
         userService.register(user3);
 
         userService.updateUser("user_1", "name", "updated_user_1");
+
+//        Created 3 cars
+        Car car1 = new Car(UUID.randomUUID().toString(), "Manufacturer_1", "model 1",
+                "license 1", new BigDecimal(10), CarType.SEDAN);
+        Car car2 = new Car(UUID.randomUUID().toString(), "Manufacturer_2", "model 2",
+                "license 2", new BigDecimal(50), CarType.SUV);
+        Car car3 = new Car(UUID.randomUUID().toString(), "Manufacturer_1", "model 3",
+                "license 3", new BigDecimal(100), CarType.COUPE);
+
+//        Added 3 cars
+        carService.addCar(car1);
+        carService.addCar(car2);
+        carService.addCar(car3);
+
+
+        LocalDateTime startTime = LocalDateTime.now().plusDays(1).plusHours(1);
+        LocalDateTime endTime = LocalDateTime.now().plusDays(2).plusHours(1);
+
+        Filter filter1 = new Filter(new DateRange(startTime, endTime));
+
+        List<Car> availableCars = carService.getAvailableCars(filter1);
+
+
+
+        System.out.println("Booking car with carId : " + availableCars.get(0).getId() + " for filters " + filter1.toString());
+
+        Filter filter2 = new Filter(new DateRange(LocalDateTime.now().plusDays(1).plusHours(2), LocalDateTime.now().plusDays(2).plusHours(1)));
+        availableCars = carService.getAvailableCars(filter2);
+
+
 
 
 

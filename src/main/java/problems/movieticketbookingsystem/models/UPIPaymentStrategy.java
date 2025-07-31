@@ -1,5 +1,7 @@
 package problems.movieticketbookingsystem.models;
 
+import java.math.BigDecimal;
+
 public class UPIPaymentStrategy implements IPaymentStrategy {
 
     private String upiId;
@@ -8,7 +10,7 @@ public class UPIPaymentStrategy implements IPaymentStrategy {
         this.upiId = upiId;
     }
 
-    public void pay(int amount) {
+    public void pay(BigDecimal amount) {
         System.out.println("Payment of amount : " + amount + " is made by UPI.");
     }
 

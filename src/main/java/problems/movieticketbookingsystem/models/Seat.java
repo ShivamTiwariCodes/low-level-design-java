@@ -1,12 +1,14 @@
 package problems.movieticketbookingsystem.models;
 
+import java.math.BigDecimal;
+
 public class Seat {
 
     private String seatId;
     private SeatType seatType;
-    private int price;
+    private BigDecimal price;
 
-    public Seat(String seatId, SeatType seatType, int price) {
+    public Seat(String seatId, SeatType seatType, BigDecimal price) {
         this.seatId = seatId;
         this.seatType = seatType;
         this.price = price;
@@ -16,7 +18,7 @@ public class Seat {
         return seatId;
     }
 
-    public int getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 

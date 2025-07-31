@@ -1,5 +1,9 @@
 package problems.movieticketbookingsystem.models;
 
+import problems.carrentalsystem.models.Booking;
+
+import java.math.BigDecimal;
+
 public class CreditCardPaymentStrategy implements IPaymentStrategy {
 
     private String cardNumber;
@@ -12,7 +16,7 @@ public class CreditCardPaymentStrategy implements IPaymentStrategy {
         this.cvv = cvv;
     }
 
-    public void pay(int amount) {
+    public void pay(BigDecimal amount) {
         System.out.println("Payment of amount " + amount + " is made using credit card.");
     }
 }

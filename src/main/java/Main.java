@@ -1,4 +1,5 @@
 
+import problems.carrentalsystem.CarRentalSystemDemo;
 import problems.filesystem.FileSystem;
 import problems.filesystem.FileSystemDemo;
 import problems.onlineshopping.OnlineShoppingDemo;
@@ -22,7 +23,9 @@ public class Main {
         OnlineStockBrokerageSystemDemo onlineStockBrokerageSystemDemo = new OnlineStockBrokerageSystemDemo();
 //        onlineStockBrokerageSystemDemo.run();
 
-        FileSystemDemo.run();
+//        FileSystemDemo.run();
+
+        CarRentalSystemDemo.run();
     }
 
 }

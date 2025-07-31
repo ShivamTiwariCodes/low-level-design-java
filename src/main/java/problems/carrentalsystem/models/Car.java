@@ -10,13 +10,15 @@ public class Car {
     private String model;
     private String licensePlateNumber;
     private BigDecimal pricePerDay;
+    private CarType carType;
 
-    public Car(String id, String manufacturer, String model, String licensePlateNumber, BigDecimal pricePerDay) {
+    public Car(String id, String manufacturer, String model, String licensePlateNumber, BigDecimal pricePerDay, CarType carType) {
         this.id = id;
         this.manufacturer = manufacturer;
         this.model = model;
         this.licensePlateNumber = licensePlateNumber;
         this.pricePerDay = pricePerDay;
+        this.carType = carType;
     }
 
     public String getId() {
@@ -37,5 +39,9 @@ public class Car {
 
     public String getModel() {
         return model;
+    }
+
+    public CarType getCarType() {
+        return carType;
     }
 }

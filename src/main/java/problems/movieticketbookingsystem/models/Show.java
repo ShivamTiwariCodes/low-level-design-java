@@ -1,8 +1,10 @@
 package problems.movieticketbookingsystem.models;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
@@ -53,13 +55,13 @@ public class Show {
         return availavleSeats.subList(0, Math.min(availavleSeats.size(), count));
     }
 
-    public int blockSeatsAndGetAmount(List<Seat> seats) {
+    public BigDecimal blockSeatsAndGetAmount(List<Seat> seats) {
         for(Seat seat: seats) {
             bookingMap.put(seat, SeatStatus.BLOCKED);
         }
-        return seats.stream().
-        mapToInt(Seat::getPrice)
-        .sum();
+         return seats.stream()
+                .map(Seat::getPrice)
+                .reduce((a, b) -> (a.add(b))).get();
     }
 
     public void updateSeatStatus(Seat seat, SeatStatus seatStatus) {

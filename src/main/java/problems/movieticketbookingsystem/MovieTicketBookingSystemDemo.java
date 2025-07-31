@@ -1,6 +1,7 @@
 package problems.movieticketbookingsystem;
 
 import java.io.FileReader;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,19 +46,19 @@ public class MovieTicketBookingSystemDemo {
 
         // create a list of 3 NORMAL and 2 PREMIUM seats
         List<Seat> seats1 = new ArrayList<>();
-        seats1.add(new Seat("seat_1", SeatType.NORMAL, 100));
-        seats1.add(new Seat("seat_2", SeatType.NORMAL, 100));
-        seats1.add(new Seat("seat_3", SeatType.NORMAL, 100));
-        seats1.add(new Seat("seat_6", SeatType.PREMIUM, 200));
-        seats1.add(new Seat("seat_7", SeatType.PREMIUM, 200));
+        seats1.add(new Seat("seat_1", SeatType.NORMAL, new BigDecimal(100)));
+        seats1.add(new Seat("seat_2", SeatType.NORMAL, new BigDecimal(100)));
+        seats1.add(new Seat("seat_3", SeatType.NORMAL, new BigDecimal(100)));
+        seats1.add(new Seat("seat_6", SeatType.PREMIUM, new BigDecimal(200)));
+        seats1.add(new Seat("seat_7", SeatType.PREMIUM, new BigDecimal(200)));
 
         // create a list of 2 NORMAL and 3 PREMIUM seats
         List<Seat> seats2 = new ArrayList<>();
-        seats2.add(new Seat("seat_4", SeatType.NORMAL, 100));
-        seats2.add(new Seat("seat_5", SeatType.NORMAL, 100));
-        seats2.add(new Seat("seat_8", SeatType.PREMIUM, 200));
-        seats2.add(new Seat("seat_9", SeatType.PREMIUM, 200));
-        seats2.add(new Seat("seat_10", SeatType.PREMIUM, 200));
+        seats2.add(new Seat("seat_4", SeatType.NORMAL, new BigDecimal(100)));
+        seats2.add(new Seat("seat_5", SeatType.NORMAL, new BigDecimal(100)));
+        seats2.add(new Seat("seat_8", SeatType.PREMIUM, new BigDecimal(200)));
+        seats2.add(new Seat("seat_9", SeatType.PREMIUM, new BigDecimal(200)));
+        seats2.add(new Seat("seat_10", SeatType.PREMIUM, new BigDecimal(200)));
 
         // create screens for threater 1
         Screen screen_t1_1 = new Screen("s1_t1", "Screen 1", 5, new ArrayList<>(seats1));

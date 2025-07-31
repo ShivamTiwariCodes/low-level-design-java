@@ -1,4 +1,4 @@
-package problems.movieticketbookingsystem.models;
+package problems.carrentalsystem.models;
 
 import java.math.BigDecimal;
 

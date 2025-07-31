@@ -1,5 +1,6 @@
 package problems.movieticketbookingsystem.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import problems.movieticketbookingsystem.models.Booking;
@@ -30,7 +31,7 @@ public class BookingService {
     public synchronized Booking bookSeats(User user, Show show, List<Seat> seats, IPaymentStrategy paymentStrategy) {
         boolean isAnySeatNotAvailable = seats.stream().anyMatch(s -> !show.getSeatStatus(s).equals(SeatStatus.AVAILABLE));
         if(isAnySeatNotAvailable) return new Booking(null, null, null, null);
-        int amount = show.blockSeatsAndGetAmount(seats);
+        BigDecimal amount = show.blockSeatsAndGetAmount(seats);
         Booking booking = new Booking(user, seats, show, new Payment(user, amount, paymentStrategy));
         return booking;
     }
