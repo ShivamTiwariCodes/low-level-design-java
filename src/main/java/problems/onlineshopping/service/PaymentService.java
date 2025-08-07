@@ -1,9 +1,9 @@
 package problems.onlineshopping.service;
 
-import designpatterns.strategy.payment.IPaymentStrategy;
-import designpatterns.strategy.payment.PaymentResult;
+import problems.onlineshopping.model.IPaymentStrategy;
 import problems.onlineshopping.model.Order;
 import problems.onlineshopping.model.Payment;
+import problems.onlineshopping.model.PaymentResult;
 
 public class PaymentService {
 

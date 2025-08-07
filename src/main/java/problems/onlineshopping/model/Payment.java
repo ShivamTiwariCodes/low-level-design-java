@@ -3,9 +3,6 @@ package problems.onlineshopping.model;
 import java.time.Instant;
 
 import common.utils.TextUtil;
-import designpatterns.strategy.payment.IPaymentStrategy;
-import designpatterns.strategy.payment.PaymentResult;
-import designpatterns.strategy.payment.PaymentStatus;
 
 public class Payment {
 

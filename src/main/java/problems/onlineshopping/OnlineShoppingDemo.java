@@ -1,11 +1,6 @@
 package problems.onlineshopping;
 
-import designpatterns.strategy.payment.IPaymentStrategy;
-import designpatterns.strategy.payment.UPIPaymentStrategy;
-import problems.onlineshopping.model.Order;
-import problems.onlineshopping.model.Product;
-import problems.onlineshopping.model.ProductType;
-import problems.onlineshopping.model.User;
+import problems.onlineshopping.model.*;
 import problems.onlineshopping.service.CartService;
 import problems.onlineshopping.service.CheckoutService;
 import problems.onlineshopping.service.InventoryService;

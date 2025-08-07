@@ -3,7 +3,6 @@ package problems.onlineshopping.model;
 import java.util.Map;
 
 import common.utils.TextUtil;
-import designpatterns.strategy.payment.PaymentStatus;
 
 public class Order {
 
